@@ -14,10 +14,20 @@ export default function useApplicationData(props) {
       ...state.appointments,
       [id]: appointment
     };
+    const findDay = state.days.findIndex((day) => //each day gets {...day}
+      day.appointments.includes(id))
+    let day
+    if (!state.appointments[id].interview) {
+      //if null, booking possible and success
+      day = { ...state.days[findDay], spots: state.days[findDay].spots - 1 }
+    }
+    const days = [...state.days]
+    if (day) {
+      days.splice(findDay, 1, day)
+    }
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() =>
-        setState({ ...state, appointments }))
-      // .then(() => console.log(appointments.filter(interview => {return interview === null})))
+        setState({ ...state, appointments, days }))
   }
 
   function cancelInterview(id) {
@@ -29,11 +39,20 @@ export default function useApplicationData(props) {
       ...state.appointments,
       [id]: appointment
     };
+    const findDay = state.days.findIndex((day) => //each day gets {...day}
+      day.appointments.includes(id))
+    let day
+    if (state.appointments[id].interview) {
+      //if not null, cancelling possible and success
+      day = { ...state.days[findDay], spots: state.days[findDay].spots + 1 }
+    }
+    const days = [...state.days]
+    if (day) {
+      days.splice(findDay, 1, day)
+    }
     return axios.delete(`/api/appointments/${id}`, appointment)
       .then(() =>
-        setState({ ...state, appointments }))
-      // .then(() => updateSpots())
-      // .then(() => console.log(appointments.filter(interview => {return interview === null})))
+        setState({ ...state, appointments, days }))
   }
 
   useEffect(() => {
@@ -43,7 +62,6 @@ export default function useApplicationData(props) {
       axios.get("/api/interviewers"),
     ]).then((all) => {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }))
-      console.log(all)
     })
   }, []);
 
