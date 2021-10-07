@@ -8,7 +8,7 @@ Scheduler is a React application that allows users to book and cancel interviews
 
 !["Screenshot of day with no spots remaining"](https://github.com/MM0nty/Scheduler/blob/acab533f87816855aa72817baeeaabeccc336d75/Documents/No_Spots_Remaining.png)
 
-!["Screenshot of character limit exceeded tweet"](https://github.com/MM0nty/Tweeter/blob/6afff236c820fe297f20c27a4f6bc4508bdc4878/Documents/Error.png)
+!["Screenshot of various states (booked, create/edit, confirmation, empty)"](https://github.com/MM0nty/Scheduler/blob/19f9c3f554b679ab33d5aea654d03890f3780b4d/Documents/Various_States.png)
 
 ## Dependencies
 
