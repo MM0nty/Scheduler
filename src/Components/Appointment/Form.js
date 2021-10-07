@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import InterviewerList from "components/InterviewerList";
-import Button from "components/Button";
+import InterviewerList from "Components/InterviewerList";
+import Button from "Components/Button";
 
 export default function Form(props) {
   const [name, setName] = useState(props.name || "")

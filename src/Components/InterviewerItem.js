@@ -1,9 +1,9 @@
 import React from "react"
-import "components/InterviewerItem.scss"
-const classnames = require("classnames")
+import "Components/InterviewerItem.scss"
+const classNames = require("classnames")
 
 export default function InterviewerItem(props) {
-  const interviewerClass = classnames("interviewers__item", {
+  const interviewerClass = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected,
   });
 

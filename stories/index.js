@@ -5,7 +5,7 @@ import { Fragment } from "react";
 
 import "index.scss";
 
-import Button from "components/Button";
+import Button from "Components/Button";
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -20,7 +20,7 @@ storiesOf("Button", module)
     <Button disabled onClick={action("button-clicked")}>Disabled</Button>
   ));
 
-import DayListItem from "components/DayListItem"
+import DayListItem from "Components/DayListItem"
 storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -32,7 +32,7 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
   ));
 
-import DayList from "components/DayList"
+import DayList from "Components/DayList"
 const days = [
   {
     id: 1,
@@ -61,7 +61,7 @@ storiesOf("DayList", module)
     <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
   ));
 
-import InterviewerItem from "components/InterviewerItem";
+import InterviewerItem from "Components/InterviewerItem";
 const interviewer = {
   id: 1,
   name: "Sylvia Palmer",
@@ -95,7 +95,7 @@ storiesOf("InterviewerItem", module)
     />
   ));
 
-import InterviewerList from "components/InterviewerList";
+import InterviewerList from "Components/InterviewerList";
 const interviewers = [
   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
   { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -129,14 +129,14 @@ storiesOf("InterviewerList", module)
     />
   ));
 
-import Appointment from "components/Appointment/Index"
-import Header from "components/Appointment/Header";
-import Empty from "components/Appointment/Empty";
-import Show from "components/Appointment/Show";
-import Confirm from "components/Appointment/Confirm";
-import Status from "components/Appointment/Status";
-import Error from "components/Appointment/Error"
-import Form from "components/Appointment/Form"
+import Appointment from "Components/Appointment/Index"
+import Header from "Components/Appointment/Header";
+import Empty from "Components/Appointment/Empty";
+import Show from "Components/Appointment/Show";
+import Confirm from "Components/Appointment/Confirm";
+import Status from "Components/Appointment/Status";
+import Error from "Components/Appointment/Error"
+import Form from "Components/Appointment/Form"
 storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]

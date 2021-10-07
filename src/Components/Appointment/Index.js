@@ -1,9 +1,9 @@
 import React, { Fragment } from "react"
-import "components/Appointment/Styles.scss"
+import "Components/Appointment/Styles.scss"
 import Header from "./Header"
 import Show from "./Show"
 import Empty from "./Empty"
-// import useVisualMode from "Hooks/useVisualMode"
+import useVisualMode from "Hooks/useVisualMode"
 import Form from "./Form"
 import Status from "./Status"
 import Confirm from "./Confirm"
@@ -19,7 +19,7 @@ export default function Appointment(props) {
   const EDIT = "EDIT"
   const ERROR_SAVE = "ERROR_SAVE"
   const ERROR_DELETE = "ERROR_DELETE"
-  // const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY)
+  const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY)
 
   function save(name, interviewer) {
     const interview = {
