@@ -3,16 +3,16 @@ import InterviewerList from "Components/InterviewerList";
 import Button from "Components/Button";
 
 export default function Form(props) {
-  const [name, setName] = useState(props.name || "")
-  const [interviewer, setInterviewer] = useState(props.interviewer || null)
+  const [name, setName] = useState(props.name || "");
+  const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const reset = () => {
     setName("")
     setInterviewer(null)
-  }
+  };
   const cancel = () => {
     reset()
     props.onCancel()
-  }
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -23,7 +23,6 @@ export default function Form(props) {
             name="name"
             type="text"
             placeholder="Enter Student Name"
-            //This must be a controlled component => React now lets limits be placed
             value={name}
             onChange={(event)=> setName(event.target.value)}
           />
