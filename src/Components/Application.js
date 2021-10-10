@@ -8,9 +8,19 @@ import "Components/Application.scss";
 
 export default function Application(props) {
   const { state, setDay, bookInterview, cancelInterview } = useApplicationData();
+
   const appointments = getAppointments(state, state.day);
   const interviewers = getInterviewers(state, state.day);
-  const schedule = appointments.map(appointment => <Appointment key={appointment.id} {...appointment} interviewers={interviewers} bookInterview={bookInterview} cancelInterview={cancelInterview} interview={getInterview(state, appointment.interview)} />);
+
+  const schedule = appointments.map(appointment =>
+    <Appointment
+      key={appointment.id}
+      {...appointment}
+      interviewers={interviewers}
+      bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
+      interview={getInterview(state, appointment.interview)}
+    />);
 
   return (
     <main className="layout">
@@ -22,7 +32,11 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={state.days} day={state.day} setDay={setDay} />
+          <DayList
+            days={state.days}
+            day={state.day}
+            setDay={setDay}
+          />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -32,7 +46,10 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {schedule}
-        <Appointment key="last" time="5PM" />
+        <Appointment
+          key="last"
+          time="5PM"
+        />
       </section>
     </main>
   );

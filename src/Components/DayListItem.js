@@ -1,4 +1,5 @@
 import React from "react";
+
 import "Components/DayListItem.scss";
 
 const classnames = require("classnames");
@@ -8,13 +9,16 @@ export default function DayListItem(props) {
     "day-list__item--selected": props.selected,
     "day-list__item--full": !props.spots
   });
+
   const formatSpots = function () {
     if (props.spots === 0) {
       return `No spots remaining`;
     };
+
     if (props.spots === 1) {
       return `1 spot remaining`;
     };
+    
     return `${props.spots} spots remaining`;
   };
 
