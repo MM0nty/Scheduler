@@ -12,6 +12,7 @@ Scheduler is a React application that allows users to book and cancel interviews
 
 ## Dependencies
 
+- Scheduler API
 - axios
 - classnames
 - normalize.css
@@ -21,6 +22,7 @@ Scheduler is a React application that allows users to book and cancel interviews
 
 ## Setup
 
+Download API with https://github.com/lighthouse-labs/scheduler-api
 Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
