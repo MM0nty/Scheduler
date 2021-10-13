@@ -22,7 +22,23 @@ export default function useApplicationData(props) {
       ...state.appointments,
       [id]: appointment
     };
-    const days = updateSpots(id);
+    // const days = updateSpots(id);
+    // finds the day's schedule
+    const getDaysSchedule = state.days.findIndex((day) =>
+      day.appointments.includes(id));
+    let day;
+
+    // books appointment if interview is null
+    if (!state.appointments[id].interview) {
+      day = {
+        ...state.days[getDaysSchedule],
+        spots: state.days[getDaysSchedule].spots - 1
+      }
+    };
+
+    const days = [...state.days];
+
+    days.splice(getDaysSchedule, 1, day); // updates spots remaining
 
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() =>
@@ -41,39 +57,56 @@ export default function useApplicationData(props) {
       ...state.appointments,
       [id]: appointment
     };
-    const days = updateSpots(id);
-
-    return axios.delete(`/api/appointments/${id}`, appointment)
-      .then(() =>
-        setState({ ...state, appointments, days }));
-  }
-
-  function updateSpots(id) {
+    // const days = updateSpots(id);
     // finds the day's schedule
     const getDaysSchedule = state.days.findIndex((day) =>
       day.appointments.includes(id));
     let day;
 
-    // books appointment if interview is null
-    if (!state.appointments[id].interview) {
-      day = {
-        ...state.days[getDaysSchedule],
-        spots: state.days[getDaysSchedule].spots - 1
-      }
-    };
-
     // cancels appointment if interview is not null
     if (state.appointments[id].interview) {
       day = {
         ...state.days[getDaysSchedule],
+        // adds spot even when editing
         spots: state.days[getDaysSchedule].spots + 1
       };
     };
     const days = [...state.days];
 
     days.splice(getDaysSchedule, 1, day); // updates spots remaining
-    return days;
+
+    return axios.delete(`/api/appointments/${id}`, appointment)
+      .then(() =>
+        setState({ ...state, appointments, days }));
   }
+
+  // function updateSpots(id) {
+  //   // finds the day's schedule
+  //   const getDaysSchedule = state.days.findIndex((day) =>
+  //     day.appointments.includes(id));
+  //   let day;
+
+  //   // books appointment if interview is null
+  //   if (!state.appointments[id].interview) {
+  //     day = {
+  //       ...state.days[getDaysSchedule],
+  //       spots: state.days[getDaysSchedule].spots - 1
+  //     }
+  //   };
+
+  //   // cancels appointment if interview is not null
+  //   if (state.appointments[id].interview) {
+  //     day = {
+  //       ...state.days[getDaysSchedule],
+  //       // adds spot even when editing
+  //       spots: state.days[getDaysSchedule].spots + 1
+  //     };
+  //   };
+  //   const days = [...state.days];
+
+  //   days.splice(getDaysSchedule, 1, day); // updates spots remaining
+  //   return days;
+  // }
 
   useEffect(() => {
     Promise.all([
