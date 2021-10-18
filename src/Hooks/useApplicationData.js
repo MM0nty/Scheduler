@@ -24,26 +24,26 @@ export default function useApplicationData(props) {
     };
 
     // finds the day's schedule
-    const getDaysSchedule = state.days.findIndex((day) =>
+    const daysSchedule = state.days.findIndex((day) =>
       day.appointments.includes(id));
     let day;
 
     // books appointment if interview is null
     if (!state.appointments[id].interview) {
       day = {
-        ...state.days[getDaysSchedule],
-        spots: state.days[getDaysSchedule].spots - 1
+        ...state.days[daysSchedule],
+        spots: state.days[daysSchedule].spots - 1
       };
     };
     
     // edits appointments if interview is not null
     if (state.appointments[id].interview) {
-      day = { ...state.days[getDaysSchedule] };
+      day = { ...state.days[daysSchedule] };
     };
 
     const days = [...state.days];
 
-    days.splice(getDaysSchedule, 1, day); // updates spots remaining
+    days.splice(daysSchedule, 1, day); // updates spots remaining
 
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() =>
@@ -64,20 +64,20 @@ export default function useApplicationData(props) {
     };
 
     // finds the day's schedule
-    const getDaysSchedule = state.days.findIndex((day) =>
+    const daysSchedule = state.days.findIndex((day) =>
       day.appointments.includes(id));
     let day;
 
     // cancels appointment if interview is not null
     if (state.appointments[id].interview) {
       day = {
-        ...state.days[getDaysSchedule],
-        spots: state.days[getDaysSchedule].spots + 1
+        ...state.days[daysSchedule],
+        spots: state.days[daysSchedule].spots + 1
       };
     };
     const days = [...state.days];
 
-    days.splice(getDaysSchedule, 1, day); // updates spots remaining
+    days.splice(daysSchedule, 1, day); // updates spots remaining
 
     return axios.delete(`/api/appointments/${id}`, appointment)
       .then(() =>
