@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Header from "./Header";
 import Empty from "./Empty";
 import Show from "./Show";
@@ -33,14 +33,10 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
       .then(() => transition(SHOW))
       .catch((error) => transition(ERROR_SAVE, true));
+    //cancel on edit goes back to error
   };
 
-  function destroy(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
-
+  function destroy() {
     transition(DELETING, true);
     props.cancelInterview(props.id)
       .then(() => transition(EMPTY))
@@ -72,7 +68,7 @@ export default function Appointment(props) {
       {mode === ERROR_SAVE &&
         <Error
           message="Error while saving"
-          onClose={() => transition(CREATE)}
+          onClose={back}
         />
       }
 
